@@ -160,6 +160,55 @@ namespace HobbyLobby.Model
             }
             return temp;
         }
+
+        public bool AdjustLocation(Box box, Location locationShelf)
+        {
+            int minIndex = 0;
+            double min = box.Length;
+            if (min > box.Width)
+            {
+                min = box.Width;
+                minIndex = 1;
+            }                
+            if (min > box.Height)
+            {
+                minIndex = 2;
+                min = box.Height;
+            }
+
+            int maxIndex = 0;
+            double max = Length;
+            if(max<Width)
+            {
+                max = Width;
+                maxIndex = 1;
+            }
+            if(max<Height)
+            {
+                max = Height;
+                maxIndex = 2;
+            }
+                
+            if(max>=min)
+            {
+                Length = locationShelf.Length;
+                Width = locationShelf.Width;
+                Height = locationShelf.Height;
+
+                if (maxIndex == 0)
+                    Length = max;
+                if (maxIndex == 1)
+                    Width = max;
+                if (maxIndex == 2)
+                    Height = max;
+
+                return true;
+
+            }
+            return false;
+
+
+        }
     }
 
 

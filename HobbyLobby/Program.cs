@@ -21,9 +21,9 @@ namespace HobbyLobby
 
             Box box = new Box
             {
-                Height = 14,
-                Width = 3,
-                Length = 8
+                Height = 17,
+                Width = 2,
+                Length = 15
             };
 
             BoxWay boxWay = location.FindTheBestWay(box);
@@ -42,14 +42,28 @@ namespace HobbyLobby
             Console.WriteLine("H: "+ locationLeft.Height);
             Console.WriteLine();
 
+            if(locationLeft.AdjustLocation(box,location))
+            {
+                BoxWay boxWayLeft = locationLeft.FindTheBestWay(box);
+                int howManyLeftCanFit = locationLeft.HowManyCanFit(box, boxWayLeft);
+                if (howManyLeftCanFit > 0)
+                {
+                    Console.WriteLine("------------ More Boxes can fit ------------");
+                    Console.WriteLine("Box     : " + boxWayLeft + "\n");
+                    Console.WriteLine(locationLeft.ShowBestWayCalcutions(box, boxWayLeft));
+                    Console.WriteLine("Number total of boxes: " + howManyLeftCanFit);
+                    Console.WriteLine();
+                }
+            }
+
             /*
             BoxWay boxWayLeft = locationLeft.FindTheBestWay(box);
             int howManyLeftCanFit = locationLeft.HowManyCanFit(box, boxWayLeft);
             if (howManyLeftCanFit > 0)
             {
                 Console.WriteLine("------------ More Boxes can fit ------------");
-                Console.WriteLine("\t\tBox     : " + boxWayLeft + "\n");
-                Console.WriteLine("\t\tNumber total of boxes: " + howManyLeftCanFit);
+                Console.WriteLine("\tBox     : " + boxWayLeft + "\n");
+                Console.WriteLine("\tNumber total of boxes: " + howManyLeftCanFit);
             }
             */
             
